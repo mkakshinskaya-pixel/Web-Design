@@ -1,0 +1,337 @@
+:root {
+    --text: #12263A;
+    --text-muted: #7A8A99;
+    --accent: #1B4A63;
+
+    --font: 'Manrope', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font);
+    color: var(--text);
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-size: 18px;
+    position: relative;
+
+    background-image: url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(238, 243, 246, 0.9) 0%,
+        rgba(238, 243, 246, 0.78) 50%,
+        rgba(228, 235, 240, 0.85) 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr;
+    gap: 0 40px;
+    align-items: center;
+}
+
+/* ТЕКСТОВЫЙ БЛОК */
+.text-block {
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    max-width: 560px;
+}
+
+/* СТИЛЬ 1 — ИМЯ */
+.name {
+    font-family: var(--font);
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1;
+}
+
+/* СТИЛЬ 2 — ЗАГОЛОВОК */
+.role {
+    font-family: var(--font);
+    font-size: clamp(44px, 6vw, 88px);
+    font-weight: 800;
+    line-height: 0.95;
+    /*letter-spacing: -0.03em;*/
+        margin-block-start:0;
+
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+/* СТИЛЬ 3 — ОПИСАНИЕ */
+.tagline {
+    font-family: var(--font);
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: 0.005em;
+    color: var(--text-muted);
+    max-width: 500px;
+}
+
+/* Кнопка */
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 44px;
+    background-color: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid var(--accent);
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: transparent;
+    color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(27, 74, 99, 0.2);
+}
+
+.btn-cta svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.btn-cta:hover svg {
+    transform: translateX(4px);
+}
+
+/* Соцсети */
+.socials {
+    display: flex;
+    gap: 32px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--accent);
+}
+
+.social-link:hover svg {
+    transform: scale(1.15);
+}
+
+/* Вертикальная надпись "Кейсы" */
+.side-cases {
+    grid-column: 2 / 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 0;
+    text-decoration: none;
+    color: var(--accent);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.side-cases svg {
+    flex-shrink: 0;
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.side-cases:hover {
+    letter-spacing: 0.3em;
+}
+
+.side-cases:hover svg {
+    transform: rotate(180deg) translateY(4px);
+}
+
+/* ФОТО — вытянуто */
+.hero-image {
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: calc(100vh - 120px);
+    aspect-ratio: 3 / 5;
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: 24px;
+    box-shadow: 
+        0 30px 60px -20px rgba(27, 74, 99, 0.35),
+        0 10px 30px -10px rgba(27, 74, 99, 0.2);
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 1200px) {
+    .hero {
+        padding: 50px;
+        gap: 0 30px;
+    }
+
+    .role {
+        font-size: clamp(40px, 6vw, 76px);
+    }
+
+    .hero-image img {
+        max-height: calc(100vh - 100px);
+    }
+}
+
+@media (max-width: 900px) {
+    .hero {
+        padding: 30px 24px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 30px;
+        min-height: auto;
+        align-items: start;
+    }
+
+    .text-block {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        max-width: 100%;
+    }
+
+    .role {
+        font-size: 12vw;
+    }
+
+    .hero-image {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .hero-image img {
+        max-height: 65vh;
+        aspect-ratio: 3 / 5;
+        object-position: center;
+        border-radius: 20px;
+    }
+
+    .side-cases {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        align-self: center;
+        justify-self: center;
+        writing-mode: horizontal-tb;
+        transform: none;
+        flex-direction: row;
+        gap: 10px;
+        padding: 14px 28px;
+        background-color: var(--accent);
+        color: #fff;
+        border-radius: 50px;
+    }
+
+    .side-cases svg {
+        transform: none;
+    }
+
+    .side-cases:hover {
+        letter-spacing: 0.2em;
+    }
+
+    .side-cases:hover svg {
+        transform: translateY(4px);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+        background-attachment: scroll;
+    }
+
+    .name {
+        font-size: 1.6rem;
+    }
+
+    .role {
+        font-size: 13vw;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .btn-cta {
+        width: 100%;
+        padding: 18px 32px;
+    }
+
+    .socials {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .hero-image img {
+        max-height: 60vh;
+        aspect-ratio: 3 / 5;
+        border-radius: 16px;
+    }
+}

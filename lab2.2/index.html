@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyundai — сравнение моделей</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0e1a;
+    --accent:#0066ff;
+    --soft:#f5f7fb;
+    --line:#e4e9f2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    font-weight:400;
+    background:var(--soft);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ==========================================
+     3 ТИПОГРАФИЧЕСКИХ СТИЛЯ
+     1. 400 / 17px — обычный
+     2. 600 / 14px — служебный
+     3. 800 / 40-80px — акцентный
+     ========================================== */
+
+  /* HEADER — большой радиальный градиент от надписи */
+  header{
+    position:relative;
+    background:#050810;
+    color:#fff;
+    padding:110px 24px 90px;
+    text-align:center;
+    overflow:hidden;
+  }
+  /* широкое радиальное сине-голубое свечение от центра */
+  header::before{
+    content:'';
+    position:absolute;
+    top:50%;left:50%;
+    width:2200px;height:2200px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,
+      rgba(0,140,255,.55) 0%,
+      rgba(0,110,230,.35) 20%,
+      rgba(0,80,190,.18) 40%,
+      rgba(0,50,140,.06) 60%,
+      rgba(0,30,90,0) 80%);
+    pointer-events:none;
+  }
+
+  header h1{
+    position:relative;
+    font-weight:800;
+    font-size:80px;
+    line-height:1;
+    letter-spacing:-3px;
+    color:#fff;
+    z-index:1;
+    text-shadow:0 4px 40px rgba(0,140,255,.6);
+  }
+
+  /* NAV */
+  nav{
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:1px solid var(--line);
+  }
+  nav ul{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    list-style:none;
+    margin:0 auto;
+    padding:22px 24px;
+    max-width:1100px;
+    flex-wrap:wrap;
+  }
+  nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+    padding:4px 0;
+    border-bottom:2px solid transparent;
+    transition:border-color .2s;
+  }
+  nav a:hover{
+    border-bottom-color:var(--accent);
+  }
+
+  main{max-width:1100px;margin:0 auto;padding:80px 24px 100px;}
+
+  section{margin-bottom:120px;}
+
+  .head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:32px;
+    padding-bottom:24px;
+    border-bottom:1px solid var(--ink);
+    flex-wrap:wrap;
+  }
+  .head h2{
+    font-weight:800;
+    font-size:40px;
+    line-height:1;
+    letter-spacing:-1px;
+    color:var(--ink);
+  }
+  .head h2 span{
+    color:var(--accent);
+    margin-right:16px;
+  }
+  .head .sub{
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+  }
+
+  .photo{
+    position:relative;
+    height:520px;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:40px;
+  }
+  .photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform 8s ease;
+  }
+  .photo:hover img{
+    transform:scale(1.05);
+  }
+  .photo::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top left, rgba(10,14,26,.6) 0%, rgba(10,14,26,0) 40%);
+    pointer-events:none;
+  }
+  .photo-price{
+    position:absolute;
+    bottom:32px;
+    left:36px;
+    z-index:2;
+    color:#fff;
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+  }
+  .photo-price .label{
+    font-weight:600;
+    font-size:14px;
+    color:#fff;
+    opacity:.75;
+  }
+  .photo-price .value{
+    font-weight:800;
+    font-size:40px;
+    line-height:1;
+    letter-spacing:-1px;
+  }
+
+  .body{
+    max-width:780px;
+    margin:0 auto;
+  }
+  .desc{
+    font-weight:400;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink);
+    margin-bottom:40px;
+    text-align:center;
+  }
+
+  .specs{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    margin-bottom:40px;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .specs > div{
+    padding:0 16px;
+    border-right:1px solid var(--line);
+    text-align:center;
+  }
+  .specs > div:last-child{border-right:none;}
+  .specs div p:first-child{
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .specs div p:last-child{
+    font-weight:800;
+    font-size:17px;
+    color:var(--ink);
+    line-height:1.2;
+  }
+
+  aside{
+    padding-left:24px;
+    border-left:2px solid var(--accent);
+    font-weight:400;
+    font-size:17px;
+    line-height:1.7;
+    color:var(--ink);
+    margin-bottom:28px;
+  }
+  aside b{
+    font-weight:800;
+    color:var(--ink);
+  }
+
+  blockquote{
+    padding-left:24px;
+    border-left:2px solid var(--line);
+    font-weight:400;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink);
+  }
+  blockquote cite{
+    display:block;
+    margin-top:12px;
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+  }
+
+  details{
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  details:first-of-type{
+    border-top:1px solid var(--line);
+    margin-top:40px;
+  }
+  details:last-of-type{border-bottom:none;}
+  summary{
+    cursor:pointer;
+    font-weight:600;
+    font-size:17px;
+    color:var(--ink);
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:color .2s;
+  }
+  summary:hover{color:var(--accent);}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{
+    content:'+';
+    font-weight:800;
+    font-size:20px;
+    color:var(--accent);
+    width:32px;height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--line);
+    border-radius:50%;
+    transition:all .3s ease;
+  }
+  details[open] summary::after{
+    content:'−';
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+    transform:rotate(180deg);
+  }
+  details ul{
+    font-weight:400;
+    font-size:17px;
+    color:var(--ink);
+    margin-top:20px;
+    padding-left:0;
+    list-style:none;
+    columns:2;
+    column-gap:40px;
+  }
+  details li{
+    margin-bottom:8px;
+    padding-left:24px;
+    position:relative;
+    break-inside:avoid;
+  }
+  details li::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:12px;
+    width:12px;height:1px;
+    background:var(--accent);
+  }
+  details p{
+    font-weight:400;
+    font-size:17px;
+    color:var(--ink);
+    margin-top:16px;
+    line-height:1.7;
+  }
+
+  .bar{
+    margin-top:20px;
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .bar span{color:var(--ink);font-weight:800;}
+  progress{
+    width:100%;
+    height:4px;
+    border-radius:2px;
+    appearance:none;
+    margin-top:8px;
+  }
+  progress::-webkit-progress-bar{background:var(--line);border-radius:2px;}
+  progress::-webkit-progress-value{background:var(--accent);border-radius:2px;}
+  progress::-moz-progress-bar{background:var(--accent);border-radius:2px;}
+
+  #comparison{
+    background:#fff;
+    border-radius:24px;
+    padding:64px 56px;
+    margin-bottom:0;
+  }
+  #comparison h2{
+    font-weight:800;
+    font-size:40px;
+    line-height:1;
+    letter-spacing:-1px;
+    color:var(--ink);
+    margin-bottom:12px;
+  }
+  #comparison .sub{
+    display:block;
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    margin-bottom:40px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:17px;
+  }
+  th,td{
+    padding:20px 12px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+  }
+  th{
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding-bottom:16px;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td{
+    font-weight:800;
+    color:var(--ink);
+  }
+  tbody td:first-child{
+    font-weight:400;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink);
+    font-size:14px;
+    font-weight:600;
+    padding:60px 24px 40px;
+    opacity:.5;
+  }
+
+  @media(max-width:900px){
+    header{padding:80px 24px 70px;}
+    header h1{font-size:52px;letter-spacing:-2px;}
+    .head h2{font-size:32px;}
+    .photo{height:340px;border-radius:16px;}
+    .photo-price .value{font-size:32px;}
+    .specs{grid-template-columns:1fr 1fr;gap:24px 0;}
+    .specs > div:nth-child(2){border-right:none;}
+    .specs > div{padding:0 12px;}
+    details ul{columns:1;}
+    #comparison{padding:40px 28px;border-radius:20px;}
+    #comparison h2{font-size:32px;}
+    table{font-size:14px;}
+    th,td{padding:16px 10px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Hyundai</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#tucson">Tucson</a></li>
+    <li><a href="#santafe">Santa Fe</a></li>
+    <li><a href="#Ioniq5">Ioniq 5</a></li>
+    <li><a href="#comparison">Сравнение</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- TUCSON -->
+  <section id="tucson">
+    <div class="head">
+      <h2><span>01</span>Tucson</h2>
+      <span class="sub">Компактный кроссовер</span>
+    </div>
+
+    <div class="photo">
+      <img src="https://img.sm360.ca/images/article/dilawri-group-of-companies/61936//11561557682567.PNG" alt="Hyundai Tucson">
+      <div class="photo-price">
+        <span class="label">от</span>
+        <span class="value">$28 705</span>
+      </div>
+    </div>
+
+    <div class="body">
+      <p class="desc">Агрессивный дизайн, гибридные версии и одна из самых длинных гарантий в классе.</p>
+
+      <div class="specs">
+        <div><p>Двигатель</p><p>2.5L / гибрид</p></div>
+        <div><p>0–100 км/ч</p><p>8.8 сек</p></div>
+        <div><p>Макс. скорость</p><p>200 км/ч</p></div>
+        <div><p>Расход</p><p>28 MPG</p></div>
+      </div>
+
+      <aside><b>Факт:</b> первый Hyundai с центральной подушкой между передними сиденьями.</aside>
+
+      <blockquote>
+        «Плавный ход, а полный привод оказался на удивление быстрым.»
+        <cite>— владелец Tucson</cite>
+      </blockquote>
+    </div>
+
+    <details>
+      <summary>Технические характеристики</summary>
+      <ul>
+        <li>8-ступенчатый автомат</li>
+        <li>Габариты 4642 × 1865 × 1666 мм</li>
+        <li>Багажник 1096 / 2275 л</li>
+        <li>Расход 28 MPG бензин</li>
+        <li>Расход 38 MPG гибрид</li>
+        <li>Дисковые тормоза, Wi-Fi, Bluetooth</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Безопасность и Euro NCAP</summary>
+      <p>7 подушек (включая центральную), ABS, ESP, AEB, контроль слепых зон.</p>
+      <div class="bar">Взрослые <span>86%</span></div>
+      <progress value="86" max="100"></progress>
+      <div class="bar">Дети <span>87%</span></div>
+      <progress value="87" max="100"></progress>
+      <div class="bar">Ассистенты <span>70%</span></div>
+      <progress value="70" max="100"></progress>
+    </details>
+  </section>
+
+  <!-- SANTA FE -->
+  <section id="santafe">
+    <div class="head">
+      <h2><span>02</span>Santa Fe</h2>
+      <span class="sub">Семейный SUV · 7 мест</span>
+    </div>
+
+    <div class="photo">
+      <img src="https://static.abw.by/catalog/5643/dc2d0560-1707-427d-962f-2c671570d502.jpg" alt="Hyundai Santa Fe">
+      <div class="photo-price">
+        <span class="label">от</span>
+        <span class="value">$48 650</span>
+      </div>
+    </div>
+
+    <div class="body">
+      <p class="desc">Квадратные формы, Н-образные фары и три полноценных ряда сидений.</p>
+
+      <div class="specs">
+        <div><p>Двигатель</p><p>2.5L турбо</p></div>
+        <div><p>0–100 км/ч</p><p>8.0 сек</p></div>
+        <div><p>Макс. скорость</p><p>210 км/ч</p></div>
+        <div><p>Расход</p><p>10.6 км/л</p></div>
+      </div>
+
+      <aside><b>Факт:</b> радикальная смена дизайна — от плавных линий к брутальным формам.</aside>
+
+      <blockquote>
+        «10 подушек и масса ассистентов — один из самых безопасных Hyundai.»
+        <cite>— AutoTrader</cite>
+      </blockquote>
+    </div>
+
+    <details>
+      <summary>Технические характеристики</summary>
+      <ul>
+        <li>8-ступенчатый автомат</li>
+        <li>Ширина 1900 мм</li>
+        <li>Высота до 1770 мм</li>
+        <li>Расход 10.6 км/л</li>
+        <li>Дисковые тормоза, Wi-Fi, Bluetooth</li>
+        <li>Гарантия 5 / 10 лет</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Безопасность и Euro NCAP</summary>
+      <p>10 подушек, ABS, ESP, AEB, Highway Driving Assist, мониторинг водителя.</p>
+      <div class="bar">Взрослые <span>84%</span></div>
+      <progress value="84" max="100"></progress>
+      <div class="bar">Дети <span>88%</span></div>
+      <progress value="88" max="100"></progress>
+      <div class="bar">Ассистенты <span>69%</span></div>
+      <progress value="69" max="100"></progress>
+    </details>
+  </section>
+
+  <!-- IONIQ 5 -->
+  <section id="Ioniq5">
+    <div class="head">
+      <h2><span>03</span>Ioniq 5</h2>
+      <span class="sub">Электрокроссовер · e-GMP</span>
+    </div>
+
+    <div class="photo">
+      <img src="images (1).jpg" alt="Hyundai Ioniq 5">
+      <div class="photo-price">
+        <span class="label">от</span>
+        <span class="value">$41 800</span>
+      </div>
+    </div>
+
+    <div class="body">
+      <p class="desc">Ретро-футуризм, 800-вольтовая архитектура и заряд 10→80% всего за 18 минут.</p>
+
+      <div class="specs">
+        <div><p>Двигатель</p><p>Электро 325 л.с.</p></div>
+        <div><p>0–100 км/ч</p><p>5.1 сек</p></div>
+        <div><p>Макс. скорость</p><p>185 км/ч</p></div>
+        <div><p>Расход</p><p>4.8 км/кВт·ч</p></div>
+      </div>
+
+      <aside><b>Факт:</b> 800 В архитектура — зарядка быстрее большинства конкурентов.</aside>
+
+      <blockquote>
+        «Ход исключительно плавный, технологии на высоте.»
+        <cite>— владелец Ioniq 5</cite>
+      </blockquote>
+    </div>
+
+    <details>
+      <summary>Технические характеристики</summary>
+      <ul>
+        <li>Односкоростной редуктор</li>
+        <li>Габариты 4655 × 1890 × 1605 мм</li>
+        <li>База 3000 мм</li>
+        <li>Багажник 527 л + 24 л спереди</li>
+        <li>Расход 4.8 км/кВт·ч</li>
+        <li>Дисковые тормоза, Wi-Fi, Bluetooth</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Безопасность и Euro NCAP</summary>
+      <p>7 подушек, ABS, ESP, AEB, Highway Driving Assist 2, контроль слепых зон.</p>
+      <div class="bar">Взрослые <span>86%</span></div>
+      <progress value="86" max="100"></progress>
+      <div class="bar">Дети <span>87%</span></div>
+      <progress value="87" max="100"></progress>
+      <div class="bar">Ассистенты <span>70%</span></div>
+      <progress value="70" max="100"></progress>
+    </details>
+  </section>
+
+  <!-- СРАВНЕНИЕ -->
+  <section id="comparison">
+    <h2>Сравнение</h2>
+    <span class="sub">Ключевые параметры</span>
+    <table>
+      <thead>
+        <tr><th>Параметр</th><th>Tucson</th><th>Santa Fe</th><th>Ioniq 5</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Двигатель</td><td>Бензин / гибрид</td><td>Турбо / гибрид</td><td>Электро</td></tr>
+        <tr><td>0–100 км/ч</td><td>8.8 сек</td><td>8.0 сек</td><td>5.1 сек</td></tr>
+        <tr><td>Макс. скорость</td><td>200 км/ч</td><td>210 км/ч</td><td>185 км/ч</td></tr>
+        <tr><td>Цена от</td><td>$28 705</td><td>$48 650</td><td>$41 800</td></tr>
+        <tr><td>Euro NCAP</td><td>5 ★</td><td>5 ★</td><td>5 ★</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>© 2026 Hyundai обзор</footer>
+
+</body>
+</html>
